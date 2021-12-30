@@ -18,7 +18,7 @@ class TestCompteCourant():
     def test_cc_a_un_solde_a_zero_par_defaut(self, compte_courant
     :CompteCourant) -> None:
         """ By default, a newly created CC has no money in it. """
-        assert compte_courant.solde == 0
+        assert compte_courant.account_balance == 0
 
     def test_cc_un_versement(self,compte_courant :CompteCourant) ->\
             None:
@@ -28,10 +28,10 @@ class TestCompteCourant():
         montant = 150
 
         # act
-        compte_courant.versement(montant)
+        compte_courant.money_transfer(montant)
 
         # assert
-        assert compte_courant.solde == montant
+        assert compte_courant.account_balance == montant
 
     def test_cc_plusieurs_versements(self,compte_courant
     :CompteCourant) -> None:
@@ -46,10 +46,10 @@ class TestCompteCourant():
 
         # act
         for _ in range(nb_versements):
-            compte_courant.versement(montant)
+            compte_courant.money_transfer(montant)
 
         # assert
-        assert compte_courant.solde == nb_versements*montant
+        assert compte_courant.account_balance == nb_versements * montant
 
     @pytest.mark.parametrize("montant", {-150, -99, 0})
     def test_cc_versement_negatif_genere_exception(self,
@@ -58,7 +58,7 @@ class TestCompteCourant():
 
         # act and assert
         with pytest.raises(Exception):
-            compte_courant.versement(montant)
+            compte_courant.money_transfer(montant)
 
     @pytest.mark.parametrize("montant", {-150, -99, 0})
     def test_cc_retrait_negatif_genere_exception(self,
@@ -67,16 +67,16 @@ class TestCompteCourant():
 
         # act and assert
         with pytest.raises(Exception):
-            compte_courant.retrait(montant)
+            compte_courant.money_withdraw(montant)
 
     def test_cc_retrait_trop_eleve_genere_exception(self,
                   compte_courant :CompteCourant) -> None:
         """ Assert that you cannot take money you do not have. """
         montant: int = 150
-        compte_courant.versement(montant)
+        compte_courant.money_transfer(montant)
         # act and assert
         with pytest.raises(Exception):
-            compte_courant.retrait(montant + montant)
+            compte_courant.money_withdraw(montant + montant)
 
     def test_cc_affichage(self, compte_courant :CompteCourant):
         """ Check object representation """

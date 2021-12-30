@@ -19,7 +19,7 @@ def ui_saisie_montant():
     print("Quel montant ?")
     try:
         amount = float(input())
-        account.versement(amount) if amount > 0 else account.retrait(-1 * amount)
+        account.money_transfer(amount) if amount > 0 else account.money_withdraw(-1 * amount)
     except Exception as e:
         print(Fore.RED + 'ERROR : An exception occured : ' + getattr(e, 'message', repr(e)))
 
@@ -29,8 +29,8 @@ def ui_affichage_soldes() :
         stdout : Display account statuses.
     """
     print(Fore.BLACK + 'Affichage des soldes : ')
-    compteC.afficherSolde()
-    compteE.afficherSolde()
+    compteC.afficher_solde()
+    compteE.afficher_solde()
 
 def ui():
     """

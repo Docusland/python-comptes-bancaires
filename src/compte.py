@@ -5,65 +5,111 @@ class Compte(ABC):
     """
         Abstract class Compte
     """
-    def __init__(self, nomProprietaire, **kwargs):
-        self.numeroCompte = uuid.uuid4()
-        self.nomProprietaire = nomProprietaire
-        self.solde = 0
+    def __init__(self, owner_name):
+        """ default constructor """
+        self.numero_compte = uuid.uuid4()
+        self.owner_name = owner_name
+        self.account_balance = 0
 
-    def retrait(self, montant= 0):
-        if montant <= 0:
-            raise Exception('Invalid amount to deduce ' + str(montant))
-        if self.solde >= montant:
-            self.solde -= montant
+    def money_withdraw(self, amount= 0, forceWithdrawal = False):
+        """ default withdrawal. """
+        if amount <= 0:
+            raise Exception('Invalid amount to deduce ' + str(amount))
+        if self.account_balance >= amount  or forceWithdrawal:
+            self.account_balance -= amount
         else:
             raise Exception('Invalid operation, not enough money')
-        
-    def versement(self, montant = 0):
+
+    def money_transfer(self, montant = 0):
+        """ default money transfer. """
         if montant <= 0:
             raise Exception('Invalid amount to add ' + str(montant))
-        self.solde += montant
+        self.account_balance += montant
 
-    def afficherSolde(self): # pragma: no cover
+    def afficher_solde(self): # pragma: no cover
+        """ FIXME: This console display should not be here. """
         print("\t - " + str(self))
 
     def __repr__(self):
-        return "{} - Solde : {}".format(type(self).__name__, str(self.solde))
+        name = type(self).__name__
+        solde = str(self.account_balance)
+        return f'{name} - Solde : {solde}'
 
 class CompteCourant(Compte):
-    def __init__(self, nomProprietaire, **kwargs):
-        Compte.__init__(self, nomProprietaire, **kwargs)
-        self.autorisationDecouvert = kwargs['limiteMax'] if 'limiteMax' in kwargs else 0
-        self.pourcentageAgios = kwargs['agios'] if 'agios' in kwargs else 0
+    """
+            Compte Courant.
+            Object representing a classical bank account.
+            Can store money. If the balance is negative, generates agios.
+    """
+    def __init__(self, owner_name, **kwargs):
+        """
+            Constructor.
+            Args:
+                **kwargs : Can contain attributes :
+                    - max_limit,specifying the maximum negative balance
+                    the owner can have.
+        """
+        Compte.__init__(self, owner_name)
+        self.negative_balance_limit = kwargs['max_limit'] if 'max_limit' in kwargs else 0
+        self.agios_percentage = kwargs['agios'] if 'agios' in kwargs else 0
 
-    def appliquerAgios(self):
-        if self.solde < 0:
-            self.solde *= (1 + self.pourcentageAgios)
+    def apply_agios(self) -> None:
+        """
+        Apply agios percentage if negative balance.
+        """
+        if self.account_balance < 0:
+            self.account_balance *= (1 + self.agios_percentage)
 
-    def retrait(self, montant= 0):
-        if self.autorisationDecouvert :
-            self.solde -= montant
-            self.appliquerAgios()
-        else:
-            Compte.retrait(self, montant)
+    def can_withdraw(self, amount) -> bool:
+        """
+        Check if the user can withdraw money.
+        :param amount : the amount to withdraw
+        :return: boolean : the current situation
+        """
+        basic_rule = amount < self.account_balance
 
-    def versement(self, montant):
-        Compte.versement(self, montant)
-        self.appliquerAgios()
+        limit_rule = self.negative_balance_limit > \
+                     abs(self.account_balance - amount)
+        return basic_rule or limit_rule
+
+    def money_withdraw(self, amount= 0):
+        """ Can withdraw money if it respects the limitation rules. """
+        Compte.money_withdraw(self, amount, self.can_withdraw(amount))
+        self.apply_agios()
+
+    def money_transfer(self, montant = 0):
+        """ Appliquer les agios en prime. """
+        Compte.money_transfer(self, montant)
+        self.apply_agios()
 
 class CompteEpargne(Compte):
-    def __init__(self, nomProprietaire, **kwargs):
-        Compte.__init__(self, nomProprietaire, **kwargs)
-        self.pourcentageInterets = kwargs['interets'] if 'interets' in kwargs else 0
+    """
+    Compte Epargne d'un particulier.
+    Génère des interets.
+    """
+    def __init__(self, owner_name, **kwargs):
+        """
 
-    def appliquerInterets(self): # pragma: no cover. Not sure yet if this
+        :param owner_name:
+        :param kwargs: Can contain attributes :
+                    - interests,specifying the maximum negative balance
+                    the owner can have.
+        """
+        Compte.__init__(self, owner_name)
+        self.interests_percentage = kwargs['interests'] if 'interests' in kwargs else 0
+
+    def apply_interests(self): # pragma: no cover.
+        # FIXME: Not sure yet if this
         # method of interests is suited
-        if self.solde > 0:
-            self.solde *= (1 + self.pourcentageInterets)
+        if self.account_balance > 0:
+            self.account_balance *= (1 + self.interests_percentage)
 
-    def retrait(self, montant= 0):
-        Compte.retrait(self, montant)
-        self.appliquerInterets()
+    def money_withdraw(self, amount= 0):
+        """ Appliquer les interets en prime """
+        Compte.money_withdraw(self, amount)
+        self.apply_interests()
 
-    def versement(self, montant):
-        Compte.versement(self, montant)
-        self.appliquerInterets()
+    def money_transfer(self, montant = 0):
+        """ Appliquer les interets en prime """
+        Compte.money_transfer(self, montant)
+        self.apply_interests()

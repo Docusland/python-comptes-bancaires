@@ -23,3 +23,10 @@ Scenario: Skip agios with overdraft authorization
     When I add 100€
     And I withdraw 10€
     Then CC holds 90€
+
+ @skip
+ Scenario: Next feature : It is possible to close an account.
+    Given CC is newly created
+    And I add 100€
+    When I want to close my account
+    Then the bank refunds me of 100€

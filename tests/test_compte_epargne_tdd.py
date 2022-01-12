@@ -1,6 +1,6 @@
 import pytest
 from random import randrange
-from .compte import CompteEpargne
+from src.account import SavingsAccount
 
 @pytest.mark.ce
 class TestCompteEpargne():
@@ -8,13 +8,13 @@ class TestCompteEpargne():
     @pytest.fixture
     def compte_epargne(self):
         """ Default CE Account. """
-        return CompteEpargne("Username")
+        return SavingsAccount("Username")
 
-    def test_CompteEpargne_a_un_solde_a_zero_par_defaut(self, compte_epargne:CompteEpargne) -> None:
+    def test_CompteEpargne_a_un_solde_a_zero_par_defaut(self, compte_epargne:SavingsAccount) -> None:
         """ By default a newly created account should have 0 €. """
-        assert compte_epargne.account_balance == 0
+        assert compte_epargne.__account_balance == 0
 
-    def test_CompteEpargne_versement_retrait(self,compte_epargne:CompteEpargne):
+    def test_CompteEpargne_versement_retrait(self, compte_epargne:SavingsAccount):
         montant :int = 150
         compte_epargne.money_transfer(montant)
         compte_epargne.money_withdraw(montant)

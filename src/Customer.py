@@ -17,7 +17,7 @@ class Customer:
 
     def get_name(self) -> str:
         """ return customer name """
-        return self.__currentAccount.owner_name
+        return self.__name
 
     def get_ca_name(self) -> str:
         """ return current account name """

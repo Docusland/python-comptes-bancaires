@@ -2,6 +2,7 @@ from unittest import TestCase
 import pytest
 
 from src.banks import Bank
+from src.customers import Customer
 
 
 class TestBank:
@@ -14,8 +15,8 @@ class TestBank:
         assert default_bank.name == 'LaBanque'
 
     def test_create_customer(self, default_bank):
-        self.premier_client = Bank.new_customer('LeClient')
-        assert self.premier_client.name == 'LeClient'
+        self.premier_client = default_bank.new_customer('LeClient')
+        assert self.premier_client == 'LeClient'
 
     # def test_create_two_customers(self, default_bank):
     #     self.premier_client = Bank.new_customer('LeClient')

@@ -1,4 +1,4 @@
-from customers import Customer
+from src.customers import Customer
 
 
 class Bank:

@@ -32,3 +32,10 @@ class Bank:
                 if tested_customer.can_be_removed():
                     self.__customers.remove(tested_customer)
                     break
+
+    def find_customer_by_name(self, name: str) -> bool | Customer:
+        if len(self.__customers) > 0:
+            for customer in self.__customers:
+                if customer.get_name() == name:
+                    return customer
+        return False

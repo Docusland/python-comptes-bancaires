@@ -51,3 +51,10 @@ class TestBank:
         default_bank.remove_customer(default_customer_can_be_removed)
 
         assert len(default_bank.get_customers()) == supposed_customer_in_bank
+
+    def test_find_customer_by_name(self, default_bank: Bank, default_customer_can_be_removed: Customer):
+        """ write test for checking customer exist in the bank with searched by name """
+        default_bank.add_customer(default_customer_can_be_removed)
+
+        assert default_customer_can_be_removed == default_bank.find_customer_by_name(name=self.SUPPOSED_CUSTOMER_NAME)
+

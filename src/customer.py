@@ -16,7 +16,7 @@ class Customer():
 
     def remove_account(self, account):
         """Remove account if this account have no money and exist in listAccount"""
-        if account.account_balance != 0:
+        if account.account_balance == 0:
             if account in self.listAccount:
                 self.listAccount.remove(account)
                 return True

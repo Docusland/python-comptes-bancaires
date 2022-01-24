@@ -72,4 +72,13 @@ class TestCustomer():
         """
         account = SavingsAccount("PEL")
         account.money_transfer(100)
+        customer.add_account(account)
         assert customer.remove_account(account) == False
+
+    def test_remove_account_with_no_money_for_customer(self, customer:Customer):
+        """
+        If can remove an account with no money
+        """
+        account = SavingsAccount("PEL")
+        customer.add_account(account)
+        assert customer.remove_account(account) == True

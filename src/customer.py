@@ -1,13 +1,10 @@
-from src.account import CurrentAccount, SavingsAccount
+from src.account import Account
 from src.bank import Bank
 
 
-class Customer():
-    def __init__(self, name):
+class Customer(Bank):
+
+    def __init__(self, name, bank):
         """ default constructor """
         self.name = name
-        Bank.__init__(self)
-        CurrentAccount(self)
-        SavingsAccount(self)
-
-   ## def inner_transfer(self, account_from, target_account_uuid):
+        Bank = bank

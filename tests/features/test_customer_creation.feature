@@ -1,7 +1,7 @@
 @v2
-Feature: check if customer exist.
+Feature: check if bank exist and if there are clients in.
 
-Scenario: Valid customer exist
-    Given Customer is newly created
-    When I name a customer named 'Toto'
-    Then Customer names is 'Toto'
+Scenario: Valid bank exist
+    Given Bank is newly created
+    When I name a bank 'Crédit Mutuel'
+    Then Bank names 'Crédit Mutuel'

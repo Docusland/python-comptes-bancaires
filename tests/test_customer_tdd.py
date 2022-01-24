@@ -48,7 +48,7 @@ class TestCustomer():
         If can add a savings account for customer
         """
         account = SavingsAccount("Livret Jeune")
-        customer.add_account(SavingsAccount)
+        customer.add_account(account)
         assert customer.listAccount[len(customer.listAccount) - 1] == account
 
     def test_add_current_account_for_customer(self, customer:Customer):
@@ -56,5 +56,6 @@ class TestCustomer():
         If can add a current account for customer
         """
         account = CurrentAccount("Compte chèque")
-        customer.add_account(CurrentAccount)
+        customer.add_account(account)
         assert customer.listAccount[len(customer.listAccount) - 1] == account
+

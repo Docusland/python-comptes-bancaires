@@ -9,4 +9,7 @@ class Customer():
         self.name = name
         self.listAccount = listAccount
 
+    def add_account(self, account):
+        self.listAccount.append(account)
+        return account
 

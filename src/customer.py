@@ -1,11 +1,18 @@
-from src.account import CurrentAccount, SavingsAccount
+from src.account import CurrentAccount, SavingsAccount, Account
 
 
 class Customer:
-    def __init__(self, name: str, current_acount: CurrentAccount, savings_acount: SavingsAccount):
+    def __init__(self, name: str, accounts: list[Account]):
         self.__name = name
-        self.__current_acount = current_acount
-        self.__savings_acount = savings_acount
+        self.__accounts = accounts
 
-    def inner_transfer(self, account_from : CurrentAccount, target_acount_id : str):
+    def inner_transfer(self, account_from: Account, target_account_id: str):
         pass
+
+    @property
+    def name(self):
+        return self.__name
+
+    @property
+    def accounts(self):
+        return self.__accounts

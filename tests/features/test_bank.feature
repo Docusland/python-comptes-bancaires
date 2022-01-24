@@ -12,9 +12,19 @@ Scenario: Create a new bank
   And It has no customers
 
 Scenario: See the customer list of the bank
-  Given I am an Administrator
+  Given I want to show all customer to SuperBank bank
   When I display the customer list of the bank
   Then a list of customer is displayed
+
+Scenario: Add customer to list of customer
+  Given I want to add customer to SuperBank bank list
+  When I put the customer in the list of the bank
+  Then a customer is add
+
+Scenario: Remove customer to list of customer
+  Given I want to remove customer to SuperBank bank list
+  When I remove the customer to the list of the bank
+  Then a customer is remove
 
 Scenario: Want to transfer money from account to another account uuid
   Given I am a Customer named Client

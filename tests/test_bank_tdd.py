@@ -1,11 +1,8 @@
-
-
 import pytest
-
 from src.bank import Bank
 
 
-@pytest.mark.cc
+@pytest.mark.v2
 class TestBank:
 
     @pytest.fixture

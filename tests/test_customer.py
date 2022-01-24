@@ -5,7 +5,6 @@ from src.account import Account
 
 @pytest.mark.customer
 class TestCustomer():
-
     SUPPOSED_NAME: str = 'astol'
 
     SUPPOSED_NEW_ACCOUNT_NAME: str = 'added_account'
@@ -48,6 +47,14 @@ class TestCustomer():
 
         assert supposed_total == len(default_customer.get_accounts())
 
-    def test_can_be_removed(self):
+    def test_can_be_removed_false(self, default_customer: Customer):
         """ test if can be removed """
-        pass
+        assert not default_customer.can_be_removed()
+
+    def test_can_be_removed_true(self, default_customer: Customer):
+        """ test if can be removed """
+        accounts = default_customer.get_accounts()
+        default_customer.remove_account(accounts[0])
+        default_customer.remove_account(accounts[0])
+
+        assert default_customer.can_be_removed()

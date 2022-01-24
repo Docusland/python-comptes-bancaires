@@ -56,8 +56,8 @@ class Customer:
                 self.__accounts.remove(existing_account)
                 break
 
-    def can_be_removed(self):
+    def can_be_removed(self) -> bool:
         """
         check if an account can be removed
         """
-        pass
+        return len(self.__accounts) == 0

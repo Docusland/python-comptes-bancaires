@@ -8,7 +8,8 @@ class Bank:
         self.__customers = customers
 
     def inner_tranfer(self, account_from: Account, account_to: Account):
-        pass
+        account_to.money_transfer(account_from.account_balance)
+        account_from.money_withdraw(account_from.account_balance)
 
     @property
     def name(self):

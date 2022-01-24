@@ -12,7 +12,7 @@ class TestCompteEpargne():
 
     def test_CompteEpargne_a_un_solde_a_zero_par_defaut(self, compte_epargne:SavingsAccount) -> None:
         """ By default a newly created account should have 0 €. """
-        assert compte_epargne.__account_balance == 0
+        assert compte_epargne.account_balance == 0
 
     def test_CompteEpargne_versement_retrait(self, compte_epargne:SavingsAccount):
         montant :int = 150

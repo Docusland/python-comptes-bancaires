@@ -1,5 +1,5 @@
 from colorama import Fore
-from .compte import *
+from .account import *
 import src.constants as constants
 
 
@@ -60,8 +60,8 @@ def ui():
 
 
 user = 'TestUser'
-compteE = CompteEpargne(user, interets=0.1)
-compteC = CompteCourant(user, agios=0.1, limiteMax=1000)
+compteE = SavingsAccount(user, interets=0.1)
+compteC = CurrentAccount(user, agios=0.1, limiteMax=1000)
 
 if __name__ == '__main__':
     ui()

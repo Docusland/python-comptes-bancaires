@@ -15,8 +15,8 @@ class TestBank:
         assert default_bank.name == 'LaBanque'
 
     def test_create_customer(self, default_bank):
-        self.premier_client = default_bank.new_customer('LeClient')
-        assert self.premier_client == 'LeClient'
+        default_bank.new_customer('LeClient')
+        assert default_bank.customers[0].name == 'LeClient'
 
     # def test_create_two_customers(self, default_bank):
     #     self.premier_client = Bank.new_customer('LeClient')

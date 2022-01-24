@@ -1,11 +1,17 @@
 from src.customers import Customer
 from unittest import TestCase
 
+import pytest
 
-class TestCustomer():
 
-    def setUp(self):
-        self.customer = Customer('Erwann Duclos')
+class TestCustomer:
+
+    @pytest.fixture
+    def default_customer(self):
+        return Customer('LeClient')
+
+    def test_create_bank(self, default_customer):
+        assert default_customer.name == 'LeClient'
 
 
     # def test_new_customer_has_no_money(self):

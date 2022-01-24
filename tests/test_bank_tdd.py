@@ -31,3 +31,22 @@ class TestBank:
         bank.customers[1].accounts[0].money_transfer(10)
         bank.inner_tranfer(bank.customers[0].accounts[0], bank.customers[1].accounts[0])
         assert bank.customers[1].accounts[0].account_balance == 20
+
+    # FIXME problème d'import circulaire
+    def test_find_account_by_account_uuid(self, bank):
+        # assert bank.find_account_by_account_uuid(0) == "jean"
+        pass
+
+    def test_find_account_by_customer_name(self, bank):
+        assert bank.find_customer_by_customer_name("jean premier") == "jean premier"
+
+    def test_add_customer_verify_size(self, bank):
+        size_before = len(bank.customers)
+        bank.add_customer(Customer("jean trois", [CurrentAccount("jean trois"), SavingsAccount("jean trois")]))
+        assert size_before == len(bank.customers) - 1
+
+    def test_remove_customer_verify_size(self, bank):
+        bank.add_customer(Customer("jean trois", [CurrentAccount("jean trois"), SavingsAccount("jean trois")]))
+        size_before = len(bank.customers)
+        bank.remove_customer("jean trois")
+        assert size_before == len(bank.customers) + 1

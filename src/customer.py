@@ -18,12 +18,15 @@ class Customer:
         return self.__accounts
 
     def add_account(self, account: Account):
-        self.__accounts.append(account)
+        if len(self.accounts) >= 2:
+            raise Exception("nbre acc max")
+        else:
+            self.__accounts.append(account)
 
     def remove_account(self, account_to_delete: Account):
-        for account in self.__accounts:
-            if type(account) == type(account_to_delete):
-                del account
+        for i in range(len(self.accounts)):
+            if type(self.accounts[i]) == type(account_to_delete):
+                del self.__accounts[i]
                 return
 
     def can_be_removed(self, account_to_remove: Account):

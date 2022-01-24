@@ -31,7 +31,7 @@ class TestCustomer():
         """ test if the saving account match with the username given """
         assert default_customer.get_name() == default_customer.get_sc_name()
 
-    def test_add_account(self, default_customer: Customer, default_new_account: Account):
+    def test_customer_add_account(self, default_customer: Customer, default_new_account: Account):
         """ TODO test the transfer between two account for customer"""
         base_list: list = default_customer.get_accounts()
         base_list.append(default_new_account)
@@ -40,18 +40,18 @@ class TestCustomer():
 
         assert base_list == default_customer.get_accounts()
 
-    def test_remove_account(self, default_customer: Customer):
+    def test_customer_remove_account(self, default_customer: Customer):
         """ test to remove an account for the customer """
         supposed_total = 1
         default_customer.remove_account(default_customer.get_accounts()[1])
 
         assert supposed_total == len(default_customer.get_accounts())
 
-    def test_can_be_removed_false(self, default_customer: Customer):
+    def test_customer_can_be_removed_false(self, default_customer: Customer):
         """ test if can be removed """
         assert not default_customer.can_be_removed()
 
-    def test_can_be_removed_true(self, default_customer: Customer):
+    def test_customer_can_be_removed_true(self, default_customer: Customer):
         """ test if can be removed """
         accounts = default_customer.get_accounts()
         default_customer.remove_account(accounts[0])

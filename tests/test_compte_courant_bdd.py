@@ -2,7 +2,7 @@ from pytest_bdd import scenario, given, when, then, parsers, scenarios
 import pytest
 from src.account import CurrentAccount
 
-scenarios('./features')
+scenarios('./features/test_compte_courant.feature')
 
 @pytest.fixture
 def compte_courant():

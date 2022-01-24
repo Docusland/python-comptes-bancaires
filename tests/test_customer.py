@@ -22,4 +22,4 @@ class TestCustomer():
         assert self.customer
 
     def test_amount_zero(self):
-        assert self.account.account_balance
+        assert self.account.account_balance == 0

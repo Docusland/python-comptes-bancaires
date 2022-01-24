@@ -1,4 +1,3 @@
-from customers import Customer
 
 
 class Bank:
@@ -6,9 +5,9 @@ class Bank:
        Abstract class Bank
     """
 
-    def __init__(self):
+    def __init__(self, name):
         """ default constructor """
-        self.name = ""
+        self.name = name
         self.customers = list
 
 

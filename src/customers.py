@@ -1,5 +1,5 @@
 from account import CurrentAccount, SavingsAccount
-from bank import Bank
+from banks import Bank
 
 
 class Customer:
@@ -7,9 +7,9 @@ class Customer:
        Abstract class Customer
     """
 
-    def __init__(self):
+    def __init__(self, name):
         """ default constructor """
-        self.name = ""
+        self.name = name
         self.bank = Bank
         self.current_account = CurrentAccount
         self.savings_account = SavingsAccount

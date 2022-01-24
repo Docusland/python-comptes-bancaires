@@ -1,0 +1,26 @@
+"""
+    Unit testing for Bank
+"""
+from pytest_bdd import scenario, given, when, then, parsers, scenarios
+import pytest
+from src.account import CurrentAccount, SavingsAccount
+from src.bank import Bank
+from src.customer import Customer
+scenarios('./features')
+@pytest.mark.cc
+class TestBank():
+    @pytest.fixture
+    def bank(self):
+        """ Generate a default Bank named CIC"""
+        return Bank("CIC")
+
+    @pytest.fixture
+    def customer(self):
+        """Generate a default Customer named Client1"""
+        return Customer("Client1")
+
+    def test_bank_name(self, bank:Bank) -> None:
+        assert bank.name == "CIC"
+
+    def test_customer_in_bank(self,bank: Bank) -> None:
+        assert len(bank.customers) > 0

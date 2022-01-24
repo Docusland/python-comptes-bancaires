@@ -12,7 +12,7 @@ class TestCustomer():
     @pytest.fixture
     def customer(self):
         """ Generate a default Customer """
-        return Customer("Customer", self.bank(), self.currentAccount(), self.savingsAccount())
+        return Customer("Customer", self.bank(), [self.currentAccount(), self.savingsAccount()])
 
     def bank(self):
         return Bank("Caisse d'épargne")
@@ -28,17 +28,13 @@ class TestCustomer():
         """If bank of customer have name is Caisse d'épargne"""
         assert customer.bank.name == "Caisse d'épargne"
 
-    def test_customer_have_cc_with_money(self, customer
+    def test_customer_have_one_account(self, customer
     :Customer) -> None:
-        """If customer have cc with money"""
-        customer.current_account.money_transfer(100)
-        assert customer.current_account.account_balance > 0
+        """If customer have one account with money"""
+        pass
+       #TODO
 
-    def test_customer_have_ce_with_money(self, customer:Customer) -> None:
-        """If customer have a ce with money"""
-        customer.saving_account.money_transfer(100)
-        assert customer.saving_account.account_balance > 0
 
-    def test_customer_inner_transfert_cc_to_ce(self, customer:Customer) -> None:
-        """If customer transfert money from cc to ce"""
-        assert customer.inner_transfert(customer.current_account, customer.saving_account) == True
+    #def test_customer_inner_transfert_cc_to_ce(self, customer:Customer) -> None:
+    #   """If customer transfert money from cc to ce"""
+    #  assert customer.inner_transfert(customer.current_account, customer.saving_account) == True

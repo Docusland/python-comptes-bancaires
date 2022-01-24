@@ -1,12 +1,14 @@
 from .bank import Bank
-from .account import CurrentAccount, SavingsAccount
+from .account import Account, CurrentAccount, SavingsAccount
 class Customer():
     """
         Customer
         Object representing a classical customer of bank
     """
-    def __init__(self,name, bank: Bank, currentAccount: CurrentAccount, savingAccount: SavingsAccount):
+    def __init__(self,name, bank: Bank, listAccount):
         self.name = name
         self.bank = bank
-        self.current_account = currentAccount
-        self.saving_account = savingAccount
+        self.listAccount = listAccount
+
+    #def inner_transfert(self, from_account, target_account_uuid):
+

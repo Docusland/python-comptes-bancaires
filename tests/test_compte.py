@@ -5,7 +5,7 @@ from unittest import TestCase
 class TestCC(TestCase):
 
     def setUp(self):
-        self.cc = CurrentAccount('Sterenn Grace')
+        self.cc = CurrentAccount()
 
     def test_cc_unauthorized_withdrawal_generates_exception(self):
         # act

@@ -8,11 +8,18 @@ import pytest
 class TestCustomer():
 
     def setUp(self) -> None:
+
+        self.foreignAccount = CurrentAccount("ForeignAccount")
+
         self.bank = Bank("MyBank")
-        self.account = CurrentAccount("CC", max_limit=1000, agios=0.1)
-        self.savings_account = SavingsAccount("CE", interest=0.2)
-        self.customer = Customer("customer", Bank(), CurrentAccount(), SavingsAccount())
+        self.account = CurrentAccount("CC")
+        self.savings_account = SavingsAccount("CE")
+
+        self.customer = Customer("customer", self.bank, self.account, self.savings_account)
 
     # Create new customer
     def test_create_new_customer(self) -> Customer:
         assert self.customer
+
+    def test_amount_zero(self):
+        assert self.account.account_balance

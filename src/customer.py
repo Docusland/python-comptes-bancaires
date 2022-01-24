@@ -2,7 +2,7 @@ from account import *
 
 
 class Customer():
-    def __init__(self, name, bank, accountList=None):
+    def __init__(self, name, bank, accountList: Account):
         if accountList is None:
             accountList = []
         self.name = name

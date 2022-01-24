@@ -3,7 +3,6 @@ Feature: Adding new custumer to a bank.
 
 Background:
   Given an administrator
-  And I own a bank named Superbank
   And I own some accounts
 
 Scenario: A new customer is create
@@ -15,10 +14,10 @@ Scenario: An account is add to customer account list
   Given I want to open an account
   Then I add an account
 
-Scenario: A customer is remove from SuperBank bank
+Scenario: An account is remove account list
   Given I want to remove an account from customer's account list
-  When I can remove a customer from SuperBank bank
-  Then I remove a customer from SuperBank bank
+  When I can remove an account to customer
+  Then I remove an account
 
 Scenario: Check if an account can be remove
   Given I remove an account from customer's account list

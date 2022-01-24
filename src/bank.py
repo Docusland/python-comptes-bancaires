@@ -12,6 +12,9 @@ class Bank():
     def remove_customer(self, customer: Customer):
         self.customers.remove(customer)
 
+    def add_customer(self, customer: Customer):
+        self.customers.add(customer)
+
     def inner_transfer(self, account_from: Account, account_number_to: Account, amount: int):
         for i in range(len(self.customers)):
             if account_number_to.numero_compte == self.customers[i]:

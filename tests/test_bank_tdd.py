@@ -60,5 +60,17 @@ class TestBank():
         """
         uuid_customer = customer.listAccount[0].numero_compte
         bank.add_customer(customer)
-
         assert bank.find_customer_by_account_uuid(uuid_customer) == customer
+
+    def test_transfert_with_from_account_who_have_no_money_to_account_of_same_customer_in_same_bank(self, bank:Bank, customer:Customer):
+        """
+        If bank can transfert money from account who have no money to account of same customer
+        """
+        assert bank.inner_transfert(customer.listAccount[0], customer.listAccount[1],100) == False
+
+    def test_transfert_with_from_account_who_money_to_account_of_same_customer_in_same_bank(self, bank:Bank, customer:Customer):
+        """
+        If bank can transfert money from account to an account of same customer
+        """
+        customer.listAccount[0].money_transfer(100)
+        assert bank.inner_transfert(customer.listAccount[0], customer.listAccount[1],50) == True

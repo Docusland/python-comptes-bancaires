@@ -43,7 +43,7 @@ class Bank():
         return true if passed
         """
         if account_from.account_balance >= montant:
-            account_from.money_withdraw(100, True)
+            account_from.money_transfer(100)
             account_to.money_transfer(100)
             return True
         else:

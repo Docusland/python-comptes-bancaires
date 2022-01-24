@@ -1,8 +1,6 @@
-from src.account import Account
-
-
 class Customer:
-    def __init__(self, name: str, accounts: list):
+    def __init__(self, name: str):
         """ default constructor """
         self.name = name
-        self.accounts = accounts
+        self.accounts = []
+

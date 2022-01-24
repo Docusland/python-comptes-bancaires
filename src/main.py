@@ -1,5 +1,5 @@
 from colorama import Fore
-from .account import *
+from src.account import *
 import src.constants as constants
 
 

@@ -1,7 +1,7 @@
 import pytest
 from random import randrange
 from src.account import SavingsAccount
-
+from pytest_bdd import scenario, given, when, then, parsers, scenarios
 @pytest.mark.ce
 class TestCompteEpargne():
 

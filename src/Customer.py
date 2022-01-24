@@ -48,7 +48,7 @@ class Customer:
         :param account:
         """
         for existing_account in self.__accounts:
-            if existing_account.owner_name == account.owner_name:
+            if existing_account == account and existing_account.account_balance == 0:
                 self.__accounts.remove(existing_account)
                 break
 

@@ -38,9 +38,23 @@ class TestCustomer():
         assert type(customer.listAccount[1]) == SavingsAccount
 
     def test_customer_name(self, customer:Customer):
+        """
+        If customer name is the same
+        """
         assert customer.name == "Customer"
 
-    def test_add_avings_account_of_customer(self, customer:Customer):
+    def test_add_savings_account_of_customer(self, customer:Customer):
+        """
+        If can add a savings account for customer
+        """
         account = SavingsAccount("Livret Jeune")
         customer.add_account(SavingsAccount)
-        assert customer.listAccount[len(customer.listAccount)] == account
+        assert customer.listAccount[len(customer.listAccount) - 1] == account
+
+    def test_add_current_account_for_customer(self, customer:Customer):
+        """
+        If can add a current account for customer
+        """
+        account = CurrentAccount("Compte chèque")
+        customer.add_account(CurrentAccount)
+        assert customer.listAccount[len(customer.listAccount) - 1] == account

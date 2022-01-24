@@ -5,6 +5,8 @@
 from random import randrange
 import pytest
 from src.account import CurrentAccount
+from src.customer import Customer
+from src.bank import Bank
 
 
 @pytest.mark.cc
@@ -14,11 +16,11 @@ class TestCompteCourant():
     @pytest.fixture
     def compte_courant(self) -> CurrentAccount:
         """ Generate a default CC. """
-        return CurrentAccount()
+        return CurrentAccount(Customer('Customer1', Bank('Bank1')))
 
     @pytest.fixture
     def compte_courant_ayant_decouvert(self):
-        return CurrentAccount(max_limit=1000, agios=0.1);
+        return CurrentAccount(Customer('Customer1', Bank('Bank1')), max_limit=1000, agios=0.1);
 
     def test_cc_a_un_solde_a_zero_par_defaut(self, compte_courant : CurrentAccount) -> None:
         """ By default, a newly created CC has no money in it. """

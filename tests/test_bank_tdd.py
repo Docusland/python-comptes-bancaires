@@ -31,4 +31,3 @@ class TestBank:
         bank.customers[1].accounts[0].money_transfer(10)
         bank.inner_tranfer(bank.customers[0].accounts[0], bank.customers[1].accounts[0])
         assert bank.customers[1].accounts[0].account_balance == 20
-

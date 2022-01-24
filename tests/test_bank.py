@@ -16,8 +16,14 @@ class TestBank(TestCase):
 
     def test_a_bank_exist(self):
         """ Check if a bank exist. """
+        #assert
+        self.v2.name == "Crédit Mutuel"
+
+    def test_client_in_bank(self):
+        """ Check if there is a client in the bank. """
+
         #act
-        self.v2.name = "Crédit Mutuel"
+        self.v2.add
 
 
 

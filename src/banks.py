@@ -12,4 +12,8 @@ class Bank:
         self.customers = []
 
     def new_customer(self, customer_name):
-        self.customers.append(Customer(customer_name))
+        self.customers.append(Customer(customer_name, self.name))
+
+    def delete_customer(self, customer_id):
+        self.customers.pop(customer_id)
+

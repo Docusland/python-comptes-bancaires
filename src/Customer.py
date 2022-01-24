@@ -59,6 +59,6 @@ class Customer:
         """
         if len(self.__accounts) > 0:
             for account in self.__accounts:
-                if account.account_balance <= 0:
-                    return True
-        return False
+                if account.account_balance > 0:
+                    return False
+        return True

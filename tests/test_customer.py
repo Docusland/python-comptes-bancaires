@@ -47,9 +47,9 @@ class TestCustomer():
 
         assert supposed_total == len(default_customer.get_accounts())
 
-    # FIXME set the account balance for testing the false
     def test_customer_can_be_removed_false(self, default_customer: Customer):
         """ test if can be removed """
+        default_customer.get_accounts()[0].account_balance = 15
         assert not default_customer.can_be_removed()
 
     def test_customer_can_be_removed_true(self, default_customer: Customer):

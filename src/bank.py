@@ -18,8 +18,16 @@ class Bank():
                 account_from.money_withdraw(amount)
                 account_number_to.account_balance(amount)
 
-    def find_customer_by_account_uuid(self, account_uuid: str):
+    def find_customer_by_account_uuid(self, account_uuid: str) -> Customer:
+        customer = None
         for i in range(len(self.customers)):
             if self.customers[i] == account_uuid:
+                customer = self.customers[i]
+        return customer
+
+    def find_customer_by_customer_name(self, customer_name: str) -> Customer:
+        customer = None
+        for i in range(len(self.customers)):
+            if self.customers.name[i] == customer_name:
                 customer = self.customers[i]
         return customer

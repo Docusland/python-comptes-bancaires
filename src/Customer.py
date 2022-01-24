@@ -51,7 +51,10 @@ class Customer:
 
         :param account:
         """
-        pass
+        for existing_account in self.__accounts:
+            if existing_account.owner_name == account.owner_name:
+                self.__accounts.remove(existing_account)
+                break
 
     def can_be_removed(self):
         """

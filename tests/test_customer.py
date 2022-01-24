@@ -40,3 +40,10 @@ class TestCustomer():
         default_customer.add_account(account=default_new_account)
 
         assert base_list == default_customer.get_accounts()
+
+    def test_remove_account(self, default_customer: Customer, default_new_account: Account):
+        """ test to remove an account for the customer """
+        supposed_total = 1
+        default_customer.remove_account(default_customer.get_accounts()[1])
+
+        assert supposed_total == len(default_customer.get_accounts())

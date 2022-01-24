@@ -24,3 +24,10 @@ class Customer():
                 return False
         else:
             return False
+
+    def can_be_removed(self):
+        can_remove = True
+        for account in self.listAccount:
+            if account.account_balance > 0:
+                can_remove = False
+        return can_remove

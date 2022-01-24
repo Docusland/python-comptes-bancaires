@@ -80,6 +80,6 @@ class TestBank():
         If bank can transfert money from account to an account
         """
         customer_two = Customer("Client2", [CurrentAccount("Compte courant"), SavingsAccount("Livret A")])
-        customer_two.listAccount[0].money_transfert(100)
+        customer_two.listAccount[0].money_transfer(100)
         bank.add_customer(customer_two)
         assert bank.inner_transfert(customer_two.listAccount[0], customer.listAccount[1], 50) == True

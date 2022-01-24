@@ -87,4 +87,5 @@ class TestCustomer():
         """
         If can be remove customer self who have money
         """
-        assert customer.can_be_removed(self) == False
+        customer.listAccount[0].money_transfer(100)
+        assert customer.can_be_removed() == False

@@ -11,9 +11,6 @@ class Customer:
     def __init__(self, customer_name: str):
         self.__name: str = customer_name
 
-        # TODO implement bank
-        # self.__bank: str = customer_name
-
         # the current account will always be the first item
         # and the saving account the second
         self.__accounts: list[Ca | Sa | Account] = [

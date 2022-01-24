@@ -17,10 +17,11 @@ class TestBank():
     @pytest.fixture
     def customer(self):
         """Generate a default Customer named Client1"""
-        return Customer("Client1")
+        return Customer("Client1", [CurrentAccount("Compte courant"), SavingsAccount("Livret A")])
 
     def test_bank_name(self, bank:Bank) -> None:
         assert bank.name == "CIC"
 
-    def test_customer_in_bank(self,bank: Bank) -> None:
-        assert len(bank.customers) > 0
+    def test_customer_in_bank(self,bank: Bank, customer:Customer) -> None:
+        bank.add_customer(customer)
+        assert len(bank.customers) < 0

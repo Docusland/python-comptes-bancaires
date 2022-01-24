@@ -1,25 +1,29 @@
 """
     Unit testing for Customer
 """
-from pytest_bdd import scenario, given, when, then, parsers, scenarios
 import pytest
+
 from src.account import CurrentAccount, SavingsAccount
 from src.bank import Bank
 from src.customer import Customer
-scenarios('./features')
-@pytest.mark.cc
+
+
+@pytest.mark.c
 class TestCustomer():
     @pytest.fixture
-    def customer(self):
+    def customer(self, bank:Bank, currentAccount:CurrentAccount, savingsAccount:SavingsAccount):
         """ Generate a default Customer """
-        return Customer("Customer", self.bank(), [self.currentAccount(), self.savingsAccount()])
+        return Customer("Customer", self.bank(), [currentAccount, savingsAccount])
 
+    @pytest.fixture
     def bank(self):
         return Bank("Caisse d'épargne")
 
+    @pytest.fixture
     def currentAccount(self):
         return CurrentAccount("Compte courant",max_limit=1000, agios=0.1)
 
+    @pytest.fixture
     def savingsAccount(self):
         return SavingsAccount("Livret A")
 

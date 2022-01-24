@@ -16,6 +16,5 @@ class TestCustomer():
         customer = Customer('Sterenn Grace')
         return customer
 
-    def test_c_add_customer(self, customer: Customer) -> None:
+    def test_c_add_new_customer_with_name_sterenn_grace(self, customer: Customer) -> None:
         assert customer.name == 'Sterenn Grace'
-

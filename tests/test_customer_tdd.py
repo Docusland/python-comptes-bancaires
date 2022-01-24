@@ -7,7 +7,10 @@ from unittest import TestCase
 class TestCustomer(TestCase):
 
     def setUp(self):
-        self.customer = Customer('Sterenn Grace', Bank('CA'), CurrentAccount('Sterenn Grace'), SavingsAccount('Sterenn Grace'))
+        self.customer = Customer('Sterenn Grace',
+                                 Bank('CA'),
+                                 CurrentAccount(max_limit=1000, agios=0.1),
+                                 SavingsAccount(interests=0.05))
 
     def test_nothing(self):
         pass

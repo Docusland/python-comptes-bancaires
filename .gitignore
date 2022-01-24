@@ -1,2 +1,5 @@
 /.idea/
-/src/.coverage
+.coverage
+.pytest_cache
+comptes-bancaires-env
+**/__pycache__

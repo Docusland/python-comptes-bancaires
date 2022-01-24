@@ -2,7 +2,7 @@ from src.customers import Customer
 from unittest import TestCase
 
 
-class TestCustomer(TestCase):
+class TestCustomer():
 
     def setUp(self):
         self.customer = Customer('Erwann Duclos')

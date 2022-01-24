@@ -4,7 +4,7 @@ from src.account import Account
 
 
 class Customer(ABC):
-    def __init__(self, name, bank, accounts):
+    def __init__(self, name, bank, accounts: []):
         self.name = name
         self.bank = bank
         self.accounts = accounts

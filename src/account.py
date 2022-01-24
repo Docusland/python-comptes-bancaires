@@ -1,32 +1,34 @@
 import uuid
 from abc import ABC
 
+
 class Account(ABC):
     """
         Abstract class Compte
     """
+
     def __init__(self, owner_name):
         """ default constructor """
         self.numero_compte = uuid.uuid4()
         self.owner_name = owner_name
         self.account_balance = 0
 
-    def money_withdraw(self, amount= 0, forceWithdrawal = False):
+    def money_withdraw(self, amount=0, forceWithdrawal=False):
         """ default withdrawal. """
         if amount <= 0:
             raise Exception('Invalid amount to deduce ' + str(amount))
-        if self.account_balance >= amount  or forceWithdrawal:
+        if self.account_balance >= amount or forceWithdrawal:
             self.account_balance -= amount
         else:
             raise Exception('Invalid operation, not enough money')
 
-    def money_transfer(self, montant = 0):
+    def money_transfer(self, montant=0):
         """ default money transfer. """
         if montant <= 0:
             raise Exception('Invalid amount to add ' + str(montant))
         self.account_balance += montant
 
-    def afficher_solde(self): # pragma: no cover
+    def afficher_solde(self):  # pragma: no cover
         """ FIXME: This console display should not be here. """
         print("\t - " + str(self))
 
@@ -35,12 +37,14 @@ class Account(ABC):
         solde = str(self.account_balance)
         return f'{name} - Solde : {solde}'
 
+
 class CurrentAccount(Account):
     """
             Compte Courant.
             Object representing a classical bank account.
             Can store money. If the balance is negative, generates agios.
     """
+
     def __init__(self, owner_name, **kwargs):
         """
             Constructor.
@@ -72,21 +76,23 @@ class CurrentAccount(Account):
                      abs(self.account_balance - amount)
         return basic_rule or limit_rule
 
-    def money_withdraw(self, amount= 0):
+    def money_withdraw(self, amount=0):
         """ Can withdraw money if it respects the limitation rules. """
         Account.money_withdraw(self, amount, self.can_withdraw(amount))
         self.apply_agios()
 
-    def money_transfer(self, montant = 0):
+    def money_transfer(self, montant=0):
         """ Appliquer les agios en prime. """
         Account.money_transfer(self, montant)
         self.apply_agios()
+
 
 class SavingsAccount(Account):
     """
     Compte Epargne d'un particulier.
     Génère des interets.
     """
+
     def __init__(self, owner_name, **kwargs):
         """
 
@@ -98,18 +104,18 @@ class SavingsAccount(Account):
         Account.__init__(self, owner_name)
         self.interests_percentage = kwargs['interests'] if 'interests' in kwargs else 0
 
-    def apply_interests(self): # pragma: no cover.
+    def apply_interests(self):  # pragma: no cover.
         # FIXME: Not sure yet if this
         # method of interests is suited
         if self.account_balance > 0:
             self.account_balance *= (1 + self.interests_percentage)
 
-    def money_withdraw(self, amount= 0):
+    def money_withdraw(self, amount=0):
         """ Appliquer les interets en prime """
         Account.money_withdraw(self, amount)
         self.apply_interests()
 
-    def money_transfer(self, montant = 0):
+    def money_transfer(self, montant=0):
         """ Appliquer les interets en prime """
         Account.money_transfer(self, montant)
         self.apply_interests()

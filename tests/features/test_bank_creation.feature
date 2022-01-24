@@ -8,4 +8,4 @@ Feature: Create a new bank
   Scenario: A bank can be created
     When I create a new bank named Goodbank
     Then A bank named Goodbank exists
-    And It has no customers
+    And It has 0 customer

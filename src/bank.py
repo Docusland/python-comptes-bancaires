@@ -5,9 +5,9 @@ from src.customer import Customer
 
 
 class Bank(ABC):
-    def __init__(self, bank, customers):
+    def __init__(self, bank):
         self.bank = bank
-        self.customers = customers
+        self.customers = []
 
     def inner_transfer(self, account: Account, to: Account):
         pass

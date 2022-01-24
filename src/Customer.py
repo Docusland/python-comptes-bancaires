@@ -16,7 +16,7 @@ class Customer:
 
         # the current account will always be the first item
         # and the saving account the second
-        self.accounts: list[Ca | Sa | Account] = [
+        self.__accounts: list[Ca | Sa | Account] = [
             Ca(owner_name=self.__name),
             Sa(owner_name=self.__name),
         ]
@@ -27,11 +27,15 @@ class Customer:
 
     def get_ca_name(self) -> str:
         """ return current account name """
-        return self.accounts[0].owner_name
+        return self.__accounts[0].owner_name
 
     def get_sc_name(self) -> str:
         """ return current account name """
-        return self.accounts[1].owner_name
+        return self.__accounts[1].owner_name
+
+    def get_accounts(self):
+        """ get customer account """
+        return self.__accounts
 
     def add_account(self, account: Account):
         """
@@ -39,7 +43,7 @@ class Customer:
 
         :param account:
         """
-        pass
+        self.__accounts.append(account)
 
     def remove_account(self, account: Account):
         """

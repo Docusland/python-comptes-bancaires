@@ -30,3 +30,8 @@ class TestBank():
     def test_b_remove_customer_in_ing_bank(self, bank: Bank, customer: Customer) -> None:
         bank.add_customer(customer)
         assert bank.remove_customer(customer)
+
+    def test_b_remove_not_existing_customer_in_ing_bank(self, bank: Bank, customer: Customer) -> None:
+        with pytest.raises(Exception) as excinfo:
+            bank.remove_customer(customer)
+        assert 'Sterenn Grace is not a customer of the bank' in str(excinfo.value)

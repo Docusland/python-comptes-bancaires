@@ -30,14 +30,14 @@ class TestBank:
         """ test bank name """
         assert self.SUPPOSED_BANK_NAME == default_bank.get_name()
 
-    def test_add_customer(self, default_bank: Bank, default_customer: Customer):
+    def test_bank_add_customer(self, default_bank: Bank, default_customer: Customer):
         """ test the add of a new customer in the bank """
         supposed_customer_in_bank = 1
         default_bank.add_customer(default_customer)
 
         assert len(default_bank.get_customers()) == supposed_customer_in_bank
 
-    def test_remove_customer_not_removed(self, default_bank: Bank, default_customer_cant_be_removed: Customer):
+    def test_bank_remove_customer_not_removed(self, default_bank: Bank, default_customer_cant_be_removed: Customer):
         """ test the method dont removed the customer """
         supposed_customer_in_bank = 1
         default_bank.add_customer(default_customer_cant_be_removed)
@@ -45,7 +45,7 @@ class TestBank:
 
         assert len(default_bank.get_customers()) == supposed_customer_in_bank
 
-    def test_remove_customer_removed(self, default_bank: Bank, default_customer_can_be_removed: Customer):
+    def test_bank_remove_customer_removed(self, default_bank: Bank, default_customer_can_be_removed: Customer):
         """ test the method removed the customer """
         supposed_customer_in_bank = 0
         default_bank.add_customer(default_customer_can_be_removed)
@@ -53,20 +53,20 @@ class TestBank:
 
         assert len(default_bank.get_customers()) == supposed_customer_in_bank
 
-    def test_find_customer_by_name_not_find(self, default_bank: Bank, default_customer_can_be_removed: Customer):
+    def test_bank_find_customer_by_name_not_find(self, default_bank: Bank, default_customer_can_be_removed: Customer):
         """ write test for checking customer exist in the bank with searched by name """
         not_work_uuid = '0'
         default_bank.add_customer(default_customer_can_be_removed)
 
         assert not default_bank.find_customer_by_account_uuid(account_uuid=not_work_uuid)
 
-    def test_find_customer_by_name_find(self, default_bank: Bank, default_customer_can_be_removed: Customer):
+    def test_bank_find_customer_by_name_find(self, default_bank: Bank, default_customer_can_be_removed: Customer):
         """ write test for checking customer exist in the bank with searched by name """
         default_bank.add_customer(default_customer_can_be_removed)
         worked_uuid = default_bank.get_customers()[0].get_accounts()[0].numero_compte
         assert default_bank.find_customer_by_account_uuid(account_uuid=worked_uuid) == default_customer_can_be_removed
 
-    def test_inner_transfer(self, default_bank: Bank, default_customer_can_be_removed: Customer):
+    def test_bank_inner_transfer(self, default_bank: Bank, default_customer_can_be_removed: Customer):
         """ test money transfer between two account """
         supposed_amount = 15
 

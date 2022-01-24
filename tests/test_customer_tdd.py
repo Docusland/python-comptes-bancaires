@@ -27,3 +27,9 @@ class TestCustomer():
     :Customer) -> None:
         """If bank of customer have name is Caisse d'épargne"""
         assert customer.bank.name == "Caisse d'épargne"
+
+    def test_customer_have_cc_with_money(self, customer
+    :Customer) -> None:
+        """If customer have cc with money"""
+        customer.current_account.money_transfer(100)
+        assert customer.current_account.account_balance > 0

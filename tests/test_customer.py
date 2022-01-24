@@ -32,7 +32,7 @@ class TestCustomer():
         assert default_customer.get_name() == default_customer.get_sc_name()
 
     def test_customer_add_account(self, default_customer: Customer, default_new_account: Account):
-        """ TODO test the transfer between two account for customer"""
+        """ test the transfer between two account for customer """
         base_list: list = default_customer.get_accounts()
         base_list.append(default_new_account)
 
@@ -47,14 +47,11 @@ class TestCustomer():
 
         assert supposed_total == len(default_customer.get_accounts())
 
+    # FIXME set the account balance for testing the false
     def test_customer_can_be_removed_false(self, default_customer: Customer):
         """ test if can be removed """
         assert not default_customer.can_be_removed()
 
     def test_customer_can_be_removed_true(self, default_customer: Customer):
         """ test if can be removed """
-        accounts = default_customer.get_accounts()
-        default_customer.remove_account(accounts[0])
-        default_customer.remove_account(accounts[0])
-
         assert default_customer.can_be_removed()

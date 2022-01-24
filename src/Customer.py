@@ -60,4 +60,8 @@ class Customer:
         """
         check if an account can be removed
         """
-        return len(self.__accounts) == 0
+        if len(self.__accounts) > 0:
+            for account in self.__accounts:
+                if account.account_balance <= 0:
+                    return True
+        return False

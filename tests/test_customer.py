@@ -9,12 +9,21 @@ from src.customer import Customer
 class TestCustomer(TestCase):
     """" Unit testing for a Bank. """
 
-    def setUp(self):
-        self.v2 = Customer('Toto')
+    def default_customer(self) -> Customer:
+        """ Generate a default CC. """
+        return Customer("Toto", "Crédit Mutuel")
 
-    def test_a_client_exist(self):
-        """ Check if a bank exist. """
+    def test_a_customer_exist(self):
+        """ Check if a customer exist. """
         #assert
-        self.v2.name == "Toto"
+        self.default_customer().name == "Toto", "Crédit Mutuel"
+
+    def test_customer_add_account(self, default_customer: Customer):
+        """ Check if an account is add to a customer """
+        assert default_customer.add_account(Account)
+
+    def test_customer_remove_account(self, default_customer: Customer):
+        """ Check if an account is delete to a customer """
+        assert default_customer.remove_account(Account)
 
 

@@ -20,10 +20,14 @@ class TestBank(TestCase):
         #assert
         self.default_bank().name == "Crédit Mutuel"
 
-    def test_client_in_bank(self, default_bank: Bank):
-        """ Check if there is a client in the bank. """
+    def test_add_customer(self, default_bank: Bank):
+        """ Check if a customer is add to a bank. """
 
-        assert default_bank.add_customer("Toto", "Crédit Mutuel")
+        assert default_bank.add_customer(Customer)
+    def test_remove_customer(self, default_bank: Bank):
+        """ Chef if a customer is remove from the bank"""
+
+        assert default_bank.remove_customer(Customer)
 
 
 

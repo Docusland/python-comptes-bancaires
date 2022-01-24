@@ -18,7 +18,7 @@ def new_cc(compte_courant, montant):
 
 @given(parsers.parse("I have an overdraft authorization with a {agios:d}% agios"), target_fixture="compte_courant")
 def cc_with_overdraft(agios):
-    return CurrentAccount('Default User', max_limit=1000, \
+    return CurrentAccount('Default User', max_limit=1000,
                           agios=agios/100)
 
 @when(parsers.parse("I add {amount:d}€"))

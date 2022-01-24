@@ -15,9 +15,18 @@ class TestBank():
         bank = Bank('ING')
         return bank
 
+    @pytest.fixture
+    def customer(self) -> Customer:
+        """ Generate a default customer """
+        customer = Customer('Sterenn Grace')
+        return customer
+
     def test_b_add_new_bank_with_ing_name(self, bank: Bank) -> None:
         assert bank.name == 'ING'
 
-    def test_b_add_customer_in_ing_bank(self, bank: Bank) -> None:
-        customer = Customer('Sterenn Grace')
-        assert bank.add_customer(customer) == True
+    def test_b_add_customer_in_ing_bank(self, bank: Bank, customer: Customer) -> None:
+        assert bank.add_customer(customer)
+
+    def test_b_remove_customer_in_ing_bank(self, bank: Bank, customer: Customer) -> None:
+        bank.add_customer(customer)
+        assert bank.remove_customer(customer)

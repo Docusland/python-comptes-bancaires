@@ -3,10 +3,10 @@ from src.customer import Customer
 class Bank:
     def __init__(self, bank_name: str):
         self.__name: str = bank_name
-        self._customers: list = []
+        self.__customers: list = []
 
     def get_customers(self):
-        return self._customers
+        return self.__customers
 
     def get_name(self) -> str:
         return self.__name
@@ -15,10 +15,10 @@ class Bank:
         """
         :param customer:
         """
-        self._customers.append(customer)
+        self.__customers.append(customer)
 
     def remove_customer(self, customer):
         """
         :param customer:
         """
-        self._customers.remove(customer)
+        self.__customers.remove(customer)

@@ -22,6 +22,11 @@ class TestBank():
     def test_bank_name(self, bank:Bank) -> None:
         assert bank.name == "CIC"
 
+    def test_add_customer_in_bank(self, bank:Bank, customer:Customer) -> None:
+        bank.add_customer(customer)
+        assert bank.customers[0] == customer
+
     def test_customer_in_bank(self,bank: Bank, customer:Customer) -> None:
         bank.add_customer(customer)
-        assert len(bank.customers) < 0
+        assert len(bank.customers) > 0
+

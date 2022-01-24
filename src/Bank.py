@@ -12,7 +12,7 @@ class Bank:
     def get_name(self) -> str:
         return self.__name
 
-    def get_customers(self):
+    def get_customers(self) -> list:
         return self.__customers
 
     def add_customer(self, customer: Customer):

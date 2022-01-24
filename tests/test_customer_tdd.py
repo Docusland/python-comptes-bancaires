@@ -89,3 +89,9 @@ class TestCustomer():
         """
         customer.listAccount[0].money_transfer(100)
         assert customer.can_be_removed() == False
+
+    def test_can_be_removed_customer_self_who_have_no_money_in_account(self, customer:Customer):
+        """
+        If can be remove customer self who have no money
+        """
+        assert customer.can_be_removed() == True

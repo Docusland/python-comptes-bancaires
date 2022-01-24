@@ -1,10 +1,13 @@
 from src.account import Account, CurrentAccount
 from unittest import TestCase
 
+from src.customer import Customer
+
+
 class TestCC(TestCase):
 
     def setUp(self):
-        self.cc = CurrentAccount('Sterenn Grace')
+        self.cc = Customer('KFZJ JKFEJK')
 
     def test_cc_unauthorized_withdrawal_generates_exception(self):
 

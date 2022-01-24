@@ -5,10 +5,10 @@ class Account(ABC):
     """
         Abstract class Compte
     """
-    def __init__(self, owner_name):
+    def __init__(self, owner):
         """ default constructor """
         self.numero_compte = uuid.uuid4()
-        self.owner_name = owner_name
+        self.owner = owner
         self.account_balance = 0
 
     def money_withdraw(self, amount= 0, forceWithdrawal = False):

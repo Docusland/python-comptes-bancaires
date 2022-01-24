@@ -10,3 +10,7 @@ class Bank:
     def add_customer(self, customer: Customer) -> bool:
         self.customers.append(customer)
         return True
+
+    def remove_customer(self, customer: Customer) -> bool:
+        self.customers.remove(customer)
+        return True

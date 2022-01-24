@@ -78,4 +78,4 @@ class TestBank:
             amount=supposed_amount,
         )
 
-        assert default_bank.get_customers()[0].get_accounts[1].account_balance() == supposed_amount
+        assert default_bank.get_customers()[0].get_accounts()[1].account_balance == supposed_amount

@@ -61,5 +61,5 @@ class Bank:
         """
         perform transfer from an account to another
         """
-        amount = account_from.money_withdraw(amount=amount)
+        account_from.money_withdraw(amount=amount)
         account_to.money_transfer(montant=amount)

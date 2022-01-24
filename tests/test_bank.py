@@ -71,7 +71,7 @@ class TestBank:
         supposed_amount = 15
 
         default_bank.add_customer(customer=default_customer_can_be_removed)
-        default_bank.get_customers()[0].get_accounts()[0].money_transfer(supposed_amount)
+        default_bank.get_customers()[0].get_accounts()[0].account_balance = supposed_amount
 
         default_bank.inner_transfer(
             account_from=default_bank.get_customers()[0].get_accounts()[0],

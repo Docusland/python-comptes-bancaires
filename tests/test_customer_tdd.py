@@ -82,3 +82,9 @@ class TestCustomer():
         account = SavingsAccount("PEL")
         customer.add_account(account)
         assert customer.remove_account(account) == True
+
+    def test_can_be_removed_customer_self_who_have_money_in_account(self, customer:Customer):
+        """
+        If can be remove customer self who have money
+        """
+        assert customer.can_be_removed(self) == False

@@ -30,10 +30,10 @@ class TestBank:
         """ test bank name """
         assert self.SUPPOSED_BANK_NAME == default_bank.get_name()
 
-    def test_bank_add_customer(self, default_bank: Bank, default_customer: Customer):
+    def test_bank_add_customer(self, default_bank: Bank, default_customer_can_be_removed: Customer):
         """ test the add of a new customer in the bank """
         supposed_customer_in_bank = 1
-        default_bank.add_customer(default_customer)
+        default_bank.add_customer(default_customer_can_be_removed)
 
         assert len(default_bank.get_customers()) == supposed_customer_in_bank
 

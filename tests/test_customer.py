@@ -22,3 +22,7 @@ class TestCustomer():
     def test_c_add_current_account(self, customer: Customer):
         current_account = CurrentAccount
         assert customer.add_account(current_account)
+
+    def test_c_add_saving_account(self, customer: Customer):
+        saving_account = SavingsAccount
+        assert customer.add_account(saving_account)

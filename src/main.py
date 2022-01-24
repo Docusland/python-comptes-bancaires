@@ -1,6 +1,6 @@
 from colorama import Fore
-from .account import *
-import src.constants as constants
+from account import *
+import constants as constants
 
 
 def ui_saisie_montant():

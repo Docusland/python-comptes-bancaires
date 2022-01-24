@@ -32,3 +32,10 @@ def remove_from_cc(compte_courant, amount):
 @then(parsers.parse("CC holds {amount:d}€"))
 def check_account(compte_courant, amount):
     assert compte_courant.account_balance == amount
+
+@when("I Delete a customer named {customername} for the bank named {bankname}")
+def delete_cc(customername, bankname):
+    if account.account_balance == 0:
+        del bankname.customername
+
+

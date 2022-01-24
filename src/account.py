@@ -1,6 +1,7 @@
 import uuid
 from abc import ABC
 
+
 class Account(ABC):
     """
         Abstract class Compte

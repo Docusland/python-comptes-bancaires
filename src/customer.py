@@ -1,4 +1,3 @@
-from src.account import Account
 from src.bank import Bank
 
 

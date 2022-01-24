@@ -1,4 +1,4 @@
-@v2
+
 Feature: Add a client in a bank
 Background:
     Given I am a bank named "Crédit Mutuel"

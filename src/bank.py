@@ -1,4 +1,3 @@
-from src.customer import Customer
 customers = []
 
 class Bank():
@@ -8,4 +7,4 @@ class Bank():
 
     def add_customer(Customer):
         """ add a customer in the bank """
-        customers.append(Customer())
+        customers.append(Customer)

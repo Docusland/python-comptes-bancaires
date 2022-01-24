@@ -1,4 +1,4 @@
-@v2
+
 Feature: check if bank exist and if there are clients in.
 
 Scenario: Valid bank exist

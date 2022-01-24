@@ -12,5 +12,8 @@ class Bank:
         return True
 
     def remove_customer(self, customer: Customer) -> bool:
-        self.customers.remove(customer)
-        return True
+        if customer in self.customers:
+            self.customers.remove(customer)
+            return True
+        else:
+            raise Exception(str(customer.name) + ' is not a customer of the bank')

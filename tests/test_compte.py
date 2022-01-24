@@ -16,4 +16,4 @@ class TestCC(TestCase):
 
 
     def test_new_account_has_no_money(self):
-        assert self.cc.__account_balance == 0
+        assert self.cc.account_balance == 0

@@ -22,7 +22,7 @@ class TestCompteCourant():
     def test_cc_a_un_solde_a_zero_par_defaut(self, compte_courant
     :CurrentAccount) -> None:
         """ By default, a newly created CC has no money in it. """
-        assert compte_courant.__account_balance == 0
+        assert compte_courant.account_balance == 0
 
     def test_cc_un_versement(self, compte_courant_ayant_decouvert :CurrentAccount) ->\
             None:
@@ -32,10 +32,10 @@ class TestCompteCourant():
         montant = 150
 
         # act
-        compte_courant.money_transfer(montant)
+        compte_courant_ayant_decouvert.money_transfer(montant)
 
         # assert
-        assert compte_courant.__account_balance == montant
+        assert compte_courant_ayant_decouvert.account_balance == montant
 
     def test_cc_plusieurs_versements(self, compte_courant
     :CurrentAccount) -> None:
@@ -53,7 +53,7 @@ class TestCompteCourant():
             compte_courant.money_transfer(montant)
 
         # assert
-        assert compte_courant.__account_balance == nb_versements * montant
+        assert compte_courant.account_balance == nb_versements * montant
 
     @pytest.mark.parametrize("montant", {-150, -99, 0})
     def test_cc_versement_negatif_genere_exception(self,
@@ -84,4 +84,4 @@ class TestCompteCourant():
 
     def test_cc_affichage(self, compte_courant :CurrentAccount):
         """ Check object representation """
-        assert 'CompteCourant - Solde : 0' in str(compte_courant)
+        assert 'Solde : 0' in str(compte_courant)

@@ -1,7 +1,7 @@
 import uuid
 from abc import ABC
 
-class Compte(ABC):
+class Account(ABC):
     """
         Abstract class Compte
     """
@@ -35,7 +35,7 @@ class Compte(ABC):
         solde = str(self.account_balance)
         return f'{name} - Solde : {solde}'
 
-class CompteCourant(Compte):
+class CurrentAccount(Account):
     """
             Compte Courant.
             Object representing a classical bank account.
@@ -49,7 +49,7 @@ class CompteCourant(Compte):
                     - max_limit,specifying the maximum negative balance
                     the owner can have.
         """
-        Compte.__init__(self, owner_name)
+        Account.__init__(self, owner_name)
         self.negative_balance_limit = kwargs['max_limit'] if 'max_limit' in kwargs else 0
         self.agios_percentage = kwargs['agios'] if 'agios' in kwargs else 0
 
@@ -74,15 +74,15 @@ class CompteCourant(Compte):
 
     def money_withdraw(self, amount= 0):
         """ Can withdraw money if it respects the limitation rules. """
-        Compte.money_withdraw(self, amount, self.can_withdraw(amount))
+        Account.money_withdraw(self, amount, self.can_withdraw(amount))
         self.apply_agios()
 
     def money_transfer(self, montant = 0):
         """ Appliquer les agios en prime. """
-        Compte.money_transfer(self, montant)
+        Account.money_transfer(self, montant)
         self.apply_agios()
 
-class CompteEpargne(Compte):
+class SavingsAccount(Account):
     """
     Compte Epargne d'un particulier.
     Génère des interets.
@@ -95,7 +95,7 @@ class CompteEpargne(Compte):
                     - interests,specifying the maximum negative balance
                     the owner can have.
         """
-        Compte.__init__(self, owner_name)
+        Account.__init__(self, owner_name)
         self.interests_percentage = kwargs['interests'] if 'interests' in kwargs else 0
 
     def apply_interests(self): # pragma: no cover.
@@ -106,10 +106,10 @@ class CompteEpargne(Compte):
 
     def money_withdraw(self, amount= 0):
         """ Appliquer les interets en prime """
-        Compte.money_withdraw(self, amount)
+        Account.money_withdraw(self, amount)
         self.apply_interests()
 
     def money_transfer(self, montant = 0):
         """ Appliquer les interets en prime """
-        Compte.money_transfer(self, montant)
+        Account.money_transfer(self, montant)
         self.apply_interests()

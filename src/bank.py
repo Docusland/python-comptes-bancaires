@@ -6,3 +6,7 @@ class Bank:
         """ default constructor """
         self.name = name
         self.customers = []
+
+    def add_customer(self, customer: Customer) -> bool:
+        self.customers.append(customer)
+        return True

@@ -32,7 +32,7 @@ class TestCustomer():
         assert default_customer.get_name() == default_customer.get_sc_name()
 
     def test_customer_add_account(self, default_customer: Customer, default_new_account: Account):
-        """ TODO test the transfer between two account for customer"""
+        """ test the transfer between two account for customer """
         base_list: list = default_customer.get_accounts()
         base_list.append(default_new_account)
 

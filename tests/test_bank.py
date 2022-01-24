@@ -35,9 +35,18 @@ class TestBank:
 
         assert len(default_bank.get_customers()) == supposed_customer_in_bank
 
-    def test_remove_customer_not_removed(self, default_bank: Bank, default_customer_can_be_removed: Customer):
+    # FIXME after fix test in customer check this
+    def test_remove_customer_not_removed(self, default_bank: Bank, default_customer_cant_be_removed: Customer):
         """ test the method dont removed the customer """
         supposed_customer_in_bank = 1
+        default_bank.add_customer(default_customer_cant_be_removed)
+        default_bank.remove_customer(default_customer_cant_be_removed)
+
+        assert len(default_bank.get_customers()) == supposed_customer_in_bank
+
+    def test_remove_customer_removed(self, default_bank: Bank, default_customer_can_be_removed: Customer):
+        """ test the method removed the customer """
+        supposed_customer_in_bank = 0
         default_bank.add_customer(default_customer_can_be_removed)
         default_bank.remove_customer(default_customer_can_be_removed)
 

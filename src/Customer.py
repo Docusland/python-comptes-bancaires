@@ -1,7 +1,6 @@
 from src.account import Account
 from src.account import CurrentAccount as Ca
 from src.account import SavingsAccount as Sa
-import uuid
 
 
 class Customer:

@@ -68,9 +68,18 @@ class TestBank():
         """
         assert bank.inner_transfert(customer.listAccount[0], customer.listAccount[1],100) == False
 
-    def test_transfert_with_from_account_who_money_to_account_of_same_customer_in_same_bank(self, bank:Bank, customer:Customer):
+    def test_transfert_with_from_account_to_account_of_same_customer_in_same_bank(self, bank:Bank, customer:Customer):
         """
         If bank can transfert money from account to an account of same customer
         """
         customer.listAccount[0].money_transfer(100)
         assert bank.inner_transfert(customer.listAccount[0], customer.listAccount[1],50) == True
+
+    def test_transfert_with_from_account_to_account_of_customers_in_same_bank(self, bank: Bank, customer: Customer):
+        """
+        If bank can transfert money from account to an account
+        """
+        customer_two = Customer("Client2", [CurrentAccount("Compte courant"), SavingsAccount("Livret A")])
+        customer_two.listAccount[0].money_transfert(100)
+        bank.add_customer(customer_two)
+        assert bank.inner_transfert(customer_two.listAccount[0], customer.listAccount[1], 50) == True

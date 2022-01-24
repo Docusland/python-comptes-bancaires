@@ -2,6 +2,7 @@ import uuid
 from abc import ABC
 from src.customer import Customer
 
+
 class Account(ABC):
     """
         Abstract class Compte
@@ -83,6 +84,7 @@ class CurrentAccount(Account):
         """ Appliquer les agios en prime. """
         Account.money_transfer(self, montant)
         self.apply_agios()
+
 
 class SavingsAccount(Account):
     """

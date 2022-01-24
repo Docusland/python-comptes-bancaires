@@ -4,7 +4,7 @@ from src.bank import Bank
 import pytest
 
 
-@pytest.mark.bank
+@pytest.fixture
 class TestBank():
 
     def setUp(self) -> None:

@@ -9,8 +9,8 @@ class Bank():
         self.name = name
         self.customers = customerList
 
-    def add_customer(self, customer: Customer):
-        self.customers.append(customer)
+    def remove_customer(self, customer: Customer):
+        self.customers.remove(customer)
 
     def inner_transfer(self, account_from: Account, account_number_to: Account, amount: int):
         for i in range(len(self.customers)):

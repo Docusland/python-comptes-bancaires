@@ -13,12 +13,14 @@ class Customer():
         self.accounts.append(account)
 
     def remove_account(self, account: Account):
-        if self.can_be_remove(account):
+        if self.can_be_remove():
             self.accounts.remove(account)
 
-    def can_be_remove(self, account: Account):
-        if account.account_balance == 0:
-            return True
-        else:
-            print("Argent toujours présent sur le compte")
-            return False
+    def can_be_remove(self):
+        for i in range(len(self.accounts)):
+            account = self.accounts
+            if account.account_balance == 0:
+                return True
+            else:
+                print("Argent toujours présent sur le compte")
+                return False

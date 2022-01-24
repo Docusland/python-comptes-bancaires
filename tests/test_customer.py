@@ -5,8 +5,7 @@ from src.account import SavingsAccount
 from src.account import Account
 import pytest
 
-
-@pytest.mark.customer
+@pytest.mark.v2
 class TestCustomer:
 
     def setUp(self) -> None:

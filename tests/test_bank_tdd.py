@@ -29,5 +29,8 @@ class TestBank:
         default_bank.add_customer(second_customer)
         assert default_bank.customers == ['John', 'Jack']
 
-    # def test_remove_customer_to_bank(self, default_bank, first_customer):
-
+    def test_remove_customer_to_bank(self, default_bank, first_customer, second_customer):
+        default_bank.add_customer(first_customer)
+        default_bank.add_customer(second_customer)
+        default_bank.remove_customer(first_customer)
+        assert default_bank.customers == ['Jack']

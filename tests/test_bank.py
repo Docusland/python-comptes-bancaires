@@ -22,7 +22,9 @@ class TestBank:
     @pytest.fixture
     def default_customer_cant_be_removed(self) -> Customer:
         """ default customer account cant be removed """
-        return Customer(customer_name=self.SUPPOSED_CUSTOMER_NAME)
+        customer = Customer(customer_name=self.SUPPOSED_CUSTOMER_NAME)
+        customer.get_accounts()[0].account_balance = 15
+        return customer
 
     def test_bank_name(self, default_bank: Bank):
         """ test bank name """
@@ -35,7 +37,6 @@ class TestBank:
 
         assert len(default_bank.get_customers()) == supposed_customer_in_bank
 
-    # FIXME after fix test in customer check this
     def test_remove_customer_not_removed(self, default_bank: Bank, default_customer_cant_be_removed: Customer):
         """ test the method dont removed the customer """
         supposed_customer_in_bank = 1

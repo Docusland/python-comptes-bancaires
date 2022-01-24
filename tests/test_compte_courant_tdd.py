@@ -5,6 +5,9 @@
 from random import randrange
 import pytest
 from src.account import CurrentAccount
+from src.customer import Customer
+from src.bank import Bank
+
 
 @pytest.mark.cc
 class TestCompteCourant():
@@ -13,18 +16,17 @@ class TestCompteCourant():
     @pytest.fixture
     def compte_courant(self) -> CurrentAccount:
         """ Generate a default CC. """
-        return CurrentAccount("Username")
+        return CurrentAccount(Customer('Customer1', Bank('Bank1')))
 
     @pytest.fixture
     def compte_courant_ayant_decouvert(self):
-        return CurrentAccount("Username", max_limit=1000, agios=0.1);
+        return CurrentAccount(Customer('Customer1', Bank('Bank1')), max_limit=1000, agios=0.1);
 
-    def test_cc_a_un_solde_a_zero_par_defaut(self, compte_courant
-    :CurrentAccount) -> None:
+    def test_cc_a_un_solde_a_zero_par_defaut(self, compte_courant : CurrentAccount) -> None:
         """ By default, a newly created CC has no money in it. """
         assert compte_courant.account_balance == 0
 
-    def test_cc_un_versement(self, compte_courant_ayant_decouvert :CurrentAccount) ->\
+    def test_cc_un_versement(self, compte_courant_ayant_decouvert: CurrentAccount) -> \
             None:
         """ If I add money to my account, it should be there. """
 
@@ -38,7 +40,7 @@ class TestCompteCourant():
         assert compte_courant_ayant_decouvert.account_balance == montant
 
     def test_cc_plusieurs_versements(self, compte_courant
-    :CurrentAccount) -> None:
+    : CurrentAccount) -> None:
         """
             If I add several times money to my account,
             everything should be there.
@@ -57,7 +59,7 @@ class TestCompteCourant():
 
     @pytest.mark.parametrize("montant", {-150, -99, 0})
     def test_cc_versement_negatif_genere_exception(self,
-                                                   compte_courant :CurrentAccount, montant :int) -> None:
+                                                   compte_courant: CurrentAccount, montant: int) -> None:
         """ Testing several erroneous values. Specified by mark.parametrize """
 
         # act and assert
@@ -66,7 +68,7 @@ class TestCompteCourant():
 
     @pytest.mark.parametrize("montant", {-150, -99, 0})
     def test_cc_retrait_negatif_genere_exception(self,
-                                                 compte_courant :CurrentAccount, montant :int) -> None:
+                                                 compte_courant: CurrentAccount, montant: int) -> None:
         """ Testing several erroneous values. Specified by mark.parametrize """
 
         # act and assert
@@ -74,7 +76,7 @@ class TestCompteCourant():
             compte_courant.money_withdraw(montant)
 
     def test_cc_retrait_trop_eleve_genere_exception(self,
-                                                    compte_courant :CurrentAccount) -> None:
+                                                    compte_courant: CurrentAccount) -> None:
         """ Assert that you cannot take money you do not have. """
         montant: int = 150
         compte_courant.money_transfer(montant)
@@ -82,6 +84,6 @@ class TestCompteCourant():
         with pytest.raises(Exception):
             compte_courant.money_withdraw(montant + montant)
 
-    def test_cc_affichage(self, compte_courant :CurrentAccount):
+    def test_cc_affichage(self, compte_courant: CurrentAccount):
         """ Check object representation """
         assert 'Solde : 0' in str(compte_courant)

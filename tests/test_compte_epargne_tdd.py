@@ -8,7 +8,7 @@ class TestCompteEpargne():
     @pytest.fixture
     def compte_epargne(self):
         """ Default CE Account. """
-        return SavingsAccount("Username")
+        return SavingsAccount()
 
     def test_CompteEpargne_a_un_solde_a_zero_par_defaut(self, compte_epargne:SavingsAccount) -> None:
         """ By default a newly created account should have 0 €. """

@@ -10,6 +10,17 @@ class Customer():
         self.listAccount = listAccount
 
     def add_account(self, account):
+        """Add an account in listAccount"""
         self.listAccount.append(account)
         return account
 
+    def remove_account(self, account):
+        """Remove account if this account have no money and exist in listAccount"""
+        if account.account_balance != 0:
+            if account in self.listAccount:
+                self.listAccount.remove(account)
+                return True
+            else:
+                return False
+        else:
+            return False

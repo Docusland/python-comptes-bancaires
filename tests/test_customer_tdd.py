@@ -59,9 +59,9 @@ class TestCustomer():
         customer.add_account(account)
         assert customer.listAccount[len(customer.listAccount) - 1] == account
 
-    def test_remove_account_for_customer(self, customer:Customer):
+    def test_remove_account_not_exist_in_list_account_for_customer(self, customer:Customer):
         """
-        If can remove an account
+        If can remove an account with money
         """
         account = SavingsAccount("PEL")
-        assert customer.remove_account == True
+        assert customer.remove_account(account) == False

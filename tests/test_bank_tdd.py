@@ -30,3 +30,8 @@ class TestBank():
         bank.add_customer(customer)
         assert len(bank.customers) > 0
 
+    def test_remove_customer_in_bank(self, bank:Bank, customer:Customer) ->None:
+        bank.add_customer(customer)
+        bank.remove_customer(customer)
+        assert len(bank.customers) == 0
+

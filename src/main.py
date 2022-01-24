@@ -1,5 +1,5 @@
 from colorama import Fore
-from .account import *
+from src.account import *
 import src.constants as constants
 
 
@@ -8,6 +8,7 @@ def ui_saisie_montant():
         stdout : input money
     """
     cc = None
+
     while cc not in [constants.COMPTE_COURANT, constants.COMPTE_EPARGNE]:
         print(Fore.BLACK + """ Sur quel compte ? 
                  1 - Compte Courant

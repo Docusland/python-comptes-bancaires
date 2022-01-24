@@ -24,6 +24,11 @@ Scenario: Skip agios with overdraft authorization
     And I withdraw 10€
     Then CC holds 90€
 
+Scenario : Generate a specific bank with a customer's list
+    Given a new bank
+    Add a customer name Steve
+    Add a customer name Herobrine
+
  @skip
  Scenario: Next feature : It is possible to close an account.
     Given CC is newly created

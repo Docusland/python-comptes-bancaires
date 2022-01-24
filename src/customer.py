@@ -2,14 +2,23 @@ from account import *
 
 
 class Customer():
-    def __init__(self, name, bank, current_account: CurrentAccount, savings_account: SavingsAccount):
+    def __init__(self, name, bank, accountList=None):
+        if accountList is None:
+            accountList = []
         self.name = name
         self.bank = bank
-        self.current_account = current_account
-        self.savings_account = savings_account
+        self.accounts = accountList
 
-    def inner_transfer(self, account_from: Account, account_number_to: Account, amount: int):
-        for i in range(len(self.bank.customers)):
-            if account_number_to.numero_compte == self.bank.customers[i]:
-                account_from.money_withdraw(amount)
-                account_number_to.account_balance(amount)
+    def add_account(self, account: Account):
+        self.accounts.append(account)
+
+    def remove_account(self, account: Account):
+        if self.can_be_remove(account):
+            self.accounts.remove(account)
+
+    def can_be_remove(self, account: Account):
+        if account.account_balance == 0:
+            return True
+        else:
+            print("Argent toujours présent sur le compte")
+            return False

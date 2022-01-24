@@ -1,4 +1,5 @@
 from src.Customer import Customer
+from src.account import Account
 
 
 class Bank:
@@ -54,3 +55,11 @@ class Bank:
                         if account.numero_compte == account_uuid:
                             return customer
         return False
+
+    @classmethod
+    def inner_transfer(cls, account_from: Account, account_to: Account, amount: int):
+        """
+        perform transfer from an account to another
+        """
+        amount = account_from.money_withdraw(amount=amount)
+        account_to.money_transfer(montant=amount)

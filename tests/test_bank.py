@@ -64,3 +64,18 @@ class TestBank:
         default_bank.add_customer(default_customer_can_be_removed)
         worked_uuid = default_bank.get_customers()[0].get_accounts()[0].numero_compte
         assert default_bank.find_customer_by_account_uuid(account_uuid=worked_uuid) == default_customer_can_be_removed
+
+    def test_inner_transfer(self, default_bank: Bank, default_customer_can_be_removed: Customer):
+        """ test money transfer between two account """
+        supposed_amount = 15
+
+        default_bank.add_customer(customer=default_customer_can_be_removed)
+        default_bank.get_customers()[0].get_accounts()[0].money_transfer(supposed_amount)
+
+        default_bank.inner_transfer(
+            account_from=default_bank.get_customers()[0].get_accounts()[0],
+            account_to=default_bank.get_customers()[0].get_accounts()[1],
+            amount=supposed_amount,
+        )
+
+        assert default_bank.get_customers()[0].get_accounts[1].account_balance() == supposed_amount

@@ -1,14 +1,15 @@
 import uuid
 from abc import ABC
+from src.customer import Customer
 
 class Account(ABC):
     """
         Abstract class Compte
     """
-    def __init__(self, owner_name):
+    def __init__(self, owner: Customer):
         """ default constructor """
         self.numero_compte = uuid.uuid4()
-        self.owner_name = owner_name
+        self.owner = owner
         self.account_balance = 0
 
     def money_withdraw(self, amount= 0, forceWithdrawal = False):
@@ -35,13 +36,14 @@ class Account(ABC):
         solde = str(self.account_balance)
         return f'{name} - Solde : {solde}'
 
+
 class CurrentAccount(Account):
     """
             Compte Courant.
             Object representing a classical bank account.
             Can store money. If the balance is negative, generates agios.
     """
-    def __init__(self, owner_name, **kwargs):
+    def __init__(self, owner, **kwargs):
         """
             Constructor.
             Args:
@@ -49,7 +51,7 @@ class CurrentAccount(Account):
                     - max_limit,specifying the maximum negative balance
                     the owner can have.
         """
-        Account.__init__(self, owner_name)
+        Account.__init__(self, owner)
         self.negative_balance_limit = kwargs['max_limit'] if 'max_limit' in kwargs else 0
         self.agios_percentage = kwargs['agios'] if 'agios' in kwargs else 0
 
@@ -87,15 +89,15 @@ class SavingsAccount(Account):
     Compte Epargne d'un particulier.
     Génère des interets.
     """
-    def __init__(self, owner_name, **kwargs):
+    def __init__(self, owner, **kwargs):
         """
 
-        :param owner_name:
+        :param owner:
         :param kwargs: Can contain attributes :
                     - interests,specifying the maximum negative balance
                     the owner can have.
         """
-        Account.__init__(self, owner_name)
+        Account.__init__(self, owner)
         self.interests_percentage = kwargs['interests'] if 'interests' in kwargs else 0
 
     def apply_interests(self): # pragma: no cover.

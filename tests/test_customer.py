@@ -4,7 +4,7 @@
 
 import pytest
 from src.customer import Customer
-
+from src.account import CurrentAccount, SavingsAccount
 
 @pytest.mark.c
 class TestCustomer():
@@ -18,3 +18,7 @@ class TestCustomer():
 
     def test_c_add_new_customer_with_name_sterenn_grace(self, customer: Customer) -> None:
         assert customer.name == 'Sterenn Grace'
+
+    def test_c_add_current_account(self, customer: Customer):
+        current_account = CurrentAccount
+        assert customer.add_account(current_account)

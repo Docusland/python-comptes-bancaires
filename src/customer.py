@@ -6,6 +6,7 @@ class Customer():
         Contain name, bank and list of account
     """
     def __init__(self,name, listAccount):
+        """Constructor."""
         self.name = name
         self.listAccount = listAccount
 
@@ -26,6 +27,9 @@ class Customer():
             return False
 
     def can_be_removed(self):
+        """
+        Verify if the customer have no money in these account and return if can be removed the customer
+        """
         can_remove = True
         for account in self.listAccount:
             if account.account_balance > 0:

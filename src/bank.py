@@ -9,6 +9,7 @@ class Bank():
     """
 
     def __init__(self, name):
+        """Constructor."""
         self.name = name
         self.customers = []
 

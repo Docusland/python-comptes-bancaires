@@ -70,7 +70,7 @@ Maintenant que nous avons des comptes banquaires opérationnels, il est temps de
 Implémentez les classes suivantes. 
 
 ![Diagramme de classe v0.2](./diagramme_classe_v0.2.png)
-Ainsi, l'attribut anciennement nommé owner_name devient owner et devient une référence vers un nouvel objet `Customer` et deux nouvelles classes sont à implémenter `Client` et `Banque`.
+Ainsi, l'attribut anciennement nommé owner_name devient owner et devient une référence vers un nouvel objet `Customer` et deux nouvelles classes sont à implémenter `Customer` et `Bank`.
 
 Pour la réalisation de ces développements, le client demande à ce que les développements soient réalisés par le biais des tests. N'étant pas d'un profil technique, il se repose sur vos préférences quant aux choix entre du BDD ou du TDD. 
 

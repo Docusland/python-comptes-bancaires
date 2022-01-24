@@ -39,3 +39,18 @@ class Bank:
                 if customer.get_name() == name:
                     return customer
         return False
+
+    def find_customer_by_account_uuid(self, account_uuid: str) -> bool | Customer:
+        """
+        find customer by uuid number
+
+        :param account_uuid:
+        :return bool | Customer:
+        """
+        if len(self.__customers) > 0:
+            for customer in self.__customers:
+                if len(customer.get_accounts()) > 0:
+                    for account in customer.get_accounts():
+                        if account.numero_compte == account_uuid:
+                            return customer
+        return False

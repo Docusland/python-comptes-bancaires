@@ -52,9 +52,15 @@ class TestBank:
 
         assert len(default_bank.get_customers()) == supposed_customer_in_bank
 
-    def test_find_customer_by_name(self, default_bank: Bank, default_customer_can_be_removed: Customer):
+    def test_find_customer_by_name_not_find(self, default_bank: Bank, default_customer_can_be_removed: Customer):
         """ write test for checking customer exist in the bank with searched by name """
+        not_work_uuid = '0'
         default_bank.add_customer(default_customer_can_be_removed)
 
-        assert default_customer_can_be_removed == default_bank.find_customer_by_name(name=self.SUPPOSED_CUSTOMER_NAME)
+        assert not default_bank.find_customer_by_account_uuid(account_uuid=not_work_uuid)
 
+    def test_find_customer_by_name_find(self, default_bank: Bank, default_customer_can_be_removed: Customer):
+        """ write test for checking customer exist in the bank with searched by name """
+        default_bank.add_customer(default_customer_can_be_removed)
+        worked_uuid = default_bank.get_customers()[0].get_accounts()[0].numero_compte
+        assert default_bank.find_customer_by_account_uuid(account_uuid=worked_uuid) == default_customer_can_be_removed

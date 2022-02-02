@@ -6,4 +6,4 @@ steps:
   - name: test
     image: qnib/pytest
     commands:
-    - python -m pytest
+    - python -m pytest && coverage

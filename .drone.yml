@@ -1,0 +1,9 @@
+kind: pipeline
+type: docker
+name: default
+
+steps:
+  - name: test
+    image: qnib/pytest
+    commands:
+    - python -m pytest -m cc
